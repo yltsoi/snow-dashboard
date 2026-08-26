@@ -1,0 +1,132 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+:root {
+    /*Surfaces */
+    --bg:           #f1f5f9;
+    --card-bg:      #ffffff;
+    --table-head-bg:    #f8fafc;
+    --input-bg:    #ffffff;
+    --drawer-bg:    #ffffff;
+    --drawer-head-bg:  #f8fafc;
+
+    /* Text */
+    --text:     #1e293b;
+    --text-2:   #374151;
+    --text-3:   #64748b;
+    --text-muted:  #94a3b8;
+
+    /* Borders */
+    --border:   #e2e8f0;
+    --border-light: #f1f5f9;
+
+    /* Interactive states */
+    --row-hover:    #f8fafc;
+    --row-click-hover:  #eff6ff;
+    --input-border:    #e2e8f0;
+
+    /* Buttons (pagination / generic) */
+    --btn-bg:   #ffffff;
+    --btn-border:   #e2e8f0;
+    --btn-text:     #374151;
+    --btn-hover:    #f1f5f9;
+    --btn-hover-border: #cbd5e1;
+
+    /* Inline code tags */
+    --chg-bg:   #eff6ff;
+    --chg-color:    #2563eb;
+    --task-bg:  #ecfdf5;
+    --task-color:   #059669;
+
+    /* Assessment panel */
+    --assess-pass-border:   #bbf7d0;
+    --assess-pass-bg:   #f0fdf4;
+    --assess-fail-border:   #fecaca;
+    --assess-fail-bg:   #fff7f7;
+    --assess-pass-icon: #16a34a;
+    --assess-fail-icon: #dc2626;
+    --assess-pass-badge-bg:    #dcfce7;
+    --assess-pass-badge-text:  #15803d;
+    --assess-fail-badge-bg:     #fee2e2;
+    --assess-fail-badge-text:  #b91c1c;
+    --skill-rec:    #b45309;
+    --assess-sep:     rgba(0,0,0,0.06);
+    --skill-sep:        rgba(0,0,0,0.0.5);
+}
+
+
+
+[data-theme="dark"] {
+    /*Surfaces */
+    --bg:           #0f172a;
+    --card-bg:      #1e293b;
+    --table-head-bg:    #162032;
+    --input-bg:    #162032;
+    --drawer-bg:    #1e293b;
+    --drawer-head-bg:  #162032;
+
+    /* Text */
+    --text:     #e2e8f0;
+    --text-2:   #cbd5e1;
+    --text-3:   #94a3b8;
+    --text-muted:  #64748b;
+
+    /* Borders */
+    --border:   #334155;
+    --border-light: #243044;
+
+    /* Interactive states */
+    --row-hover:    #243044;
+    --row-click-hover:  #1e3a5f;
+    --input-border:    #475569;
+
+    /* Buttons (pagination / generic) */
+    --btn-bg:   #1e293b;
+    --btn-border:   #334155;
+    --btn-text:     #e2e8f0;
+    --btn-hover:    #243044;
+    --btn-hover-border: #475569;
+
+    /* Inline code tags */
+    --chg-bg:   #1e3a5f;
+    --chg-color:    #93c5fd;
+    --task-bg:  #064e3b;
+    --task-color:   #6ee7b7;
+
+    /* Assessment panel */
+    --assess-pass-border:   #16a34a;
+    --assess-pass-bg:   #052e16;
+    --assess-fail-border:   #dc2626;
+    --assess-fail-bg:   #2d0f0f;
+    --assess-pass-icon: #4ade80;
+    --assess-fail-icon: #f87171;
+    --assess-pass-badge-bg:    #064e3b;
+    --assess-pass-badge-text:  #4ade80;
+    --assess-fail-badge-bg:     #f87171;
+    --assess-fail-badge-text:  #fbbf24;
+    --skill-rec:    #b45309;
+    --assess-sep:     rgba(255,255,255,0.08);
+    --skill-sep:        rgba(255,255,255,0.0.5);
+}
+
+
+/* --------Base----------------------------- */
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+/* -------- Layout -------------------------*/
+
+.app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
