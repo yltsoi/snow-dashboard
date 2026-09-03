@@ -15,13 +15,13 @@ const STATE_COLOR = {
 
 export default function ChangesTable() {
     const [result, setResult] = useState({ data: [], total: 0 })
-    const [filters, setFilters] = useState({  state: '', risk: '', search: '', pages: 1 })
+    const [filters, setFilters] = useState({  state: '', risk: '', search: '', page: 1 })
     const [loading, setLoading] = useState(true)
     const [selected, setSelected] = useState(null)
 
     useEffect(() => {
         setLoading(true)
-        fetchChange(filters).then( d => {
+        fetchChanges(filters).then( d => {
             setResult(d)
             setLoading(false)
         })
@@ -33,7 +33,7 @@ export default function ChangesTable() {
 
     return (
         <div className="card table-card">
-            <div className="table-headed">
+            <div className="table-header">
                 <div className="card-title">Change Requests</div>
                 <div className="table-filters">
                     <input
@@ -44,7 +44,7 @@ export default function ChangesTable() {
                     />
                     <select
                         className="filter-select"
-                        value={filter.state}
+                        value={filters.state}
                         onChange={e => set('state', e.target.value)}
                     >
                         <option value="">All States</option>
@@ -77,7 +77,7 @@ export default function ChangesTable() {
                     <tbody>
                         {loading ? (
                             <tr>
-                                <td colspan={7} style={{ textAlign: 'center', padding: '2rem', color: 'var(--text-muted)'}}>
+                                <td colSpan={7} style={{ textAlign: 'center', padding: '2rem', color: 'var(--text-muted)'}}>
                                     Loading .....
                                 </td>
                             </tr>

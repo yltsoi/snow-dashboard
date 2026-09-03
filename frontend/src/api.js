@@ -3,7 +3,7 @@ const BASE = import.meta.env.VITE_API_BASE ?? '/api'
 export const fetchSummary = () =>
     fetch(`${BASE}/stats/summary`).then(r => r.json())
 
-export const fetchVolume = () =>
+export const fetchVolume = (days = 30) =>
     fetch(`${BASE}/stats/volume?days=${days}`).then(r => r.json())
 
 
@@ -13,7 +13,7 @@ export const fetchByStatus = () =>
 export const fetchByRisk = () =>
     fetch(`${BASE}/stats/by-risk`).then(r => r.json())
 
-export const fetchChanges = (parmas = {}) => {
+export const fetchChanges = (params = {}) => {
     const q = new URLSearchParams()
     if ( params.state) q.set('state', params.state)
     if ( params.risk) q.set('risk', params.risk)

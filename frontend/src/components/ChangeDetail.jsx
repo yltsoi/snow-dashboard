@@ -3,18 +3,23 @@ import {createPortal} from "react-dom";
 import { fetchChange, assessChange } from "../api";
 import * as logger from '../logger';
 
-const RISK_COLOR = { Hight: '#dc2626', Medium: '#f5a623', Low: '#7ed321' };
+const RISK_COLOR = { High: '#dc2626', Medium: '#f5a623', Low: '#7ed321' };
 const STATE_COLOR = {
-    New: '#f5a623',
-    Approved: '#7ed321',
-    Rejected: '#dc2626',
-    Pending: '#f5a623'
+    New: '#64748b',
+    Assess: '#7c3aed',
+    Authorize: '#2563eb',
+    Scheduled: '#0891b2',
+    Implement: '#d97706',
+    Review: '#9333ea',
+    Closed: '#7ed321',
+    Cancelled: '#94asb8',
 }
+
 const TASK_STATE_COLOR = {
-    New: '#f5a623',
-    InProgress: '#7ed321',
-    Completed: '#dc2626',
-    Pending: '#f5a623'
+    Open: '#2563eb',
+    'In Progress': '#d97706',
+    Closed: '#059669',
+    Cancelled: '#94a3b8'
 }
 
 function DetailRow({ label, value }) {
@@ -27,6 +32,9 @@ function DetailRow({ label, value }) {
 }
 
 function Section({ title, children }) {
+
+    console.log( "title" , title )
+
     return (
         <div className="detail-section">
             <div className="detail-section-title">{title}</div>
@@ -86,7 +94,7 @@ function AssessmentPanel({ assessment, error }) {
 
     const pass = assessment.overall === 'PASS'
     const changeChecks = assessment.change_checks ?? assessment.skills ?? []
-    const taskResults = assessment.task+results ?? []
+    const taskResults = assessment.task_results ?? []
     const tasksAssessed = assessment.tasks_assessed ??  taskResults.length
     const tasksFailed = assessment.tasks_failed ?? taskResults.filter(t => t.overall !== 'PASS').length
 
@@ -145,7 +153,7 @@ export default function ChangeDetail({ number, onClose }) {
         setAssessError(null)
         fetchChange(number)
             .then(d => {
-                logger.log('Change detail loaded', { number, state: d,state, risk: d.risk })
+                logger.log('Change detail loaded', { number, state: d.state, risk: d.risk })
                 setChange(d)
                 setLoading(false)
             })
@@ -174,6 +182,8 @@ export default function ChangeDetail({ number, onClose }) {
                 setAssessing(false)
             })
     }
+
+    console.log( "change", change)
 
     return createPortal(
         <>
@@ -228,23 +238,23 @@ export default function ChangeDetail({ number, onClose }) {
                         </Section>      
                     
 
-                    <Section title="Description">
-                        <p className="detail-text">{change.description}</p>
-                    </Section>
+                        <Section title="Description">
+                            <p className="detail-text">{change.description}</p>
+                        </Section>
 
-                    <Section title="Justification">
-                        <p className="detail-text">{change.justification}</p>
-                    </Section>
+                        <Section title="Justification">
+                            <p className="detail-text">{change.justification}</p>
+                        </Section>
 
-                    <Section title="Implementation Plan">
-                        <pre className="detail-pre">{change.implementation_plan}</pre>
-                    </Section>
+                        <Section title="Implementation Plan">
+                            <pre className="detail-pre">{change.implementation_plan}</pre>
+                        </Section>
 
-                    <Section title="Backout Plan">
-                        <p className="detail-text">{change.backout_plan}</p>
-                    </Section>
+                        <Section title="Backout Plan">
+                            <p className="detail-text">{change.backout_plan}</p>
+                        </Section>
 
-                    <Section title={`Tasks ($change.tasks.length})`}>
+                    <Section title={`Tasks (${change.tasks.length})`}>
                         {change.tasks.length === 0 ? (
                             <p className="detail-text" style={{ color: '#94a3b8'}}>No tasks associated with this change. </p>
                         ) : (

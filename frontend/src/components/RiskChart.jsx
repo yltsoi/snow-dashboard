@@ -1,4 +1,5 @@
-import { BarChart, Bar, XAxis, YAxis, Tooltip, Cell, ResponseiveContainer } from 'recharts'
+import { BarChart, Bar, XAxis, YAxis, Tooltip, Cell, ResponsiveContainer } from 'recharts'
+
 
 const COLORS = { High: '#dc2626', Medium: '#d97706', Low: '#059669'}
 
@@ -6,6 +7,8 @@ export default function RiskChart({ data }){
     const ordered = ['High', 'Medium', 'Low'].map(
         r => data.find( d => d.risk === r) ?? { risk: r, count: 0}
     )
+
+    console.log("riskdata", data)
 
     return (
         <ResponsiveContainer width="100%" height={230}>
@@ -17,7 +20,7 @@ export default function RiskChart({ data }){
                     tickLine={false}
                     axisLine={false}
                 />
-                <YAxi
+                <YAxis
                     type="category"
                     dataKey="risk"
                     width={52}
@@ -37,4 +40,5 @@ export default function RiskChart({ data }){
             </BarChart>
         </ResponsiveContainer>
     )
+ 
 }

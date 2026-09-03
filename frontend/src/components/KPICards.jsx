@@ -6,10 +6,12 @@ const CARDS = [
 ]
 
 export default function KPICards({ summary }) {
+
+    console.log("kpidata", summary)
     return (
         <div className="kpi-grid">
             {CARDS.map(({ key, label, color }) => (
-                <div key={key} className="kpi-card" style={{ boarderTopColor: color}}>
+                <div key={key} className="kpi-card" style={{ borderTopColor: color}}>
                     <div className="kpi-value" style={{ color }}>{summary[key]}</div>
                     <div className="kpi-label">{label}</div>
                 </div>
